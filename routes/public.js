@@ -38,20 +38,20 @@ router.post("/login", async (req, res) => {
     });
 
     if (!user) {
-      res.status(404).json({ message: "Usuário não encontrado" });
+      return res.status(404).json({ message: "Usuário não encontrado" });
     }
 
     const isMatch = await bcrypt.compare(userInfo.password, user.password);
 
     if (!isMatch) {
-      res.status(400).json({ message: "Senha incorreta" });
+      return res.status(400).json({ message: "Senha incorreta" });
     }
 
     const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: "7d" });
 
-    res.status(200).json(token);
+    return res.status(200).json(token);
   } catch (err) {
-    res.status(500).json({ message: "Erro no servidor, tente novamente" });
+    return res.status(500).json({ message: "Erro no servidor, tente novamente" });
   }
 });
 
