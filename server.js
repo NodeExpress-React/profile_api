@@ -15,5 +15,9 @@ app.use("/usuarios", publicRoutes);
 app.use("/usuarios", auth, privateRoutes);
 
 app.listen(3000, () => {
-  console.log("Servidor rodando");
+  console.log(`
+    
+    Servidor rodando 🎈
+    
+    `);
 });
